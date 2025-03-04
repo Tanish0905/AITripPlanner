@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 import { useGoogleLogin } from '@react-oauth/google';
@@ -36,10 +36,6 @@ function CreateTrip() {
   const handleInputChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
   };
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   // Validate the Google OAuth access token
   const validateToken = async (accessToken) => {
@@ -88,64 +84,6 @@ function CreateTrip() {
     },
   });
 
-  // const OnGenerateTrip = async () => {
-  //   const user = JSON.parse(localStorage.getItem('user'));
-  //   const accessToken = localStorage.getItem('access_token');
-  //   const refreshToken = localStorage.getItem('refresh_token'); // Ensure you store the refresh token during login
-
-  //   if (!user || !accessToken) {
-  //     setOpenDialog(true); // Prompt the user to log in again
-  //     return;
-  //   }
-
-  //   // Validate the access token
-  //   const isTokenValid = await validateToken(accessToken);
-  //   if (!isTokenValid) {
-  //     // If the token is invalid or expired, try refreshing it
-  //     if (refreshToken) {
-  //       const newAccessToken = await refreshAccessToken(refreshToken);
-  //       if (newAccessToken) {
-  //         localStorage.setItem('access_token', newAccessToken);
-  //       } else {
-  //         setOpenDialog(true); // Prompt the user to log in again
-  //         return;
-  //       }
-  //     } else {
-  //       setOpenDialog(true); // Prompt the user to log in again
-  //       return;
-  //     }
-  //   }
-
-  //   if (formData?.noOfDays > 5) {
-  //     let missingFields = [];
-
-  //     if (!formData?.location) missingFields.push("Location");
-  //     if (!formData?.budget) missingFields.push("Budget");
-  //     if (!formData?.traveler) missingFields.push("Traveler");
-
-  //     if (missingFields.length > 0) {
-  //       toast({
-  //         description: `Please fill the following fields: ${missingFields.join(", ")}`,
-  //       });
-  //       return;
-  //     }
-  //   }
-
-  //   setLoading(true);
-  //   const FINAL_PROMPT = AI_PROMPT
-  //     .replace('{location}', formData?.location?.label)
-  //     .replace('{totalDays}', formData?.noOfDays)
-  //     .replace('{traveler}', formData?.traveler)
-  //     .replace('{budget}', formData?.budget)
-  //     .replace('{totalDays}', formData?.noOfDays);
-
-  //   console.log('FINAL_PROMPT', FINAL_PROMPT);
-
-  //   const result = await chatSession.sendMessage(FINAL_PROMPT);
-  //   console.log('result', result?.response?.text());
-
-  //   SaveAiTrip(result?.response?.text());
-  // };
 const OnGenerateTrip = async () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const accessToken = localStorage.getItem('access_token');
@@ -203,7 +141,6 @@ const OnGenerateTrip = async () => {
       return;
     }
 
-    console.log('Generated Trip:', tripResponse);
     SaveAiTrip(tripResponse);
   } catch (error) {
     console.error('Error generating trip:', error);
@@ -215,7 +152,7 @@ const OnGenerateTrip = async () => {
   }
 };
 
-  const SaveAiTrip = async (TripData) => {
+const SaveAiTrip = async (TripData) => {
   if (!TripData) {
     alert("Trip data is empty. Cannot save.");
     return;
@@ -360,7 +297,7 @@ const OnGenerateTrip = async () => {
   checkSession("2rCcrC6RGuSyd0J3W9AjSg"); // Use the SID here
 
   return (
-    <div className="sm:px-10 md:px-32 lg:px-56 px-5">
+    <div className="sm:px-10 md:px-32 lg:px-56 px-5 mt-10">
       <h2 className="font-bold text-3xl">Tell us your travel preferences</h2>
       <p className="mt-3 text-gray-500 text-xl">
         Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences🗺️

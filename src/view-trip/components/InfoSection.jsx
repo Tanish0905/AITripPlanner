@@ -20,7 +20,6 @@ function InfoSection({ trip }) {
 
         try {
             const resp = await GetPlaceDetails(data);
-            console.log("API Response:", resp?.data);
 
             const photos = resp?.data?.places?.[0]?.photos;
             if (photos && photos.length > 0) {
@@ -28,7 +27,6 @@ function InfoSection({ trip }) {
                 if (photoReference) {
                     const generatedUrl = PHOTO_REF_URL.replace("{PHOTO_REFERENCE}", photoReference);
                     setPhotoUrl(generatedUrl);
-                    console.log("Generated Photo URL:", generatedUrl);
                 } else {
                     console.warn("No valid photo reference found.");
                 }
@@ -49,7 +47,7 @@ function InfoSection({ trip }) {
     return (
         <div>
             <img
-                src={photoUrl || "../../assets/react.svg"} // ✅ Use dynamic image
+                src={photoUrl} // ✅ Use dynamic image
                 className="h-[340px] w-full object-cover rounded-xl"
                 alt="Place"
             />

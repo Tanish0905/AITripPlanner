@@ -40,7 +40,7 @@ function Viewtrip () {
       <Hotels trip={ trip } />
 
       {/* Daily Plan */ }
-      <PlacesToVisit trip={ trip } />
+      <PlacesToVisit trip={ trip } key={1}/>
       
       {/* Footer */ }
       <Footer trip={trip} />
