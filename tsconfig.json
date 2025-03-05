@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es6", // ES6 is a good default target
+    "module": "esnext", // Use 'esnext' or 'es2020' to support 'import.meta'
+    "jsx": "react-jsx", // Enable JSX support with the new JSX transform
+    "esModuleInterop": true, // Allow default imports from non-ES modules
+    "skipLibCheck": true, // Skip type checking of all declaration files
+    "strict": true, // Enables all strict type-checking options
+    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names
+    "moduleResolution": "node", // Use Node's module resolution strategy
+    "resolveJsonModule": true, // Allow importing JSON files
+    "isolatedModules": true, // Ensure all files are treated as isolated modules
+    "noEmit": true, // Skip emitting output (helpful for TypeScript as a linter)
+    "allowJs": true, // Allow JavaScript files to be imported in TypeScript
+    "skipDefaultLibCheck": true, // Skip checking the default library files for type issues
+    "baseUrl": ".", // Set the base directory for relative module imports
+    "paths": {
+      "@/*": ["src/*"] // Enable aliasing for absolute imports (adjust as necessary)
+    }
+  },
+  "include": [
+    "src/**/*" // Include all source files in the project
+  ],
+  "exclude": [
+    "node_modules" // Exclude node_modules folder from type checking
+  ]
+}

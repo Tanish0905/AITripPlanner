@@ -1,7 +1,8 @@
 import { StrictMode, startTransition } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { Toaster } from "@/components/ui/toaster";
+// import { Toaster } from "@/components/ui/toaster";
+
 import App from './App.jsx';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import CreateTrip from './create-trip';
@@ -10,6 +11,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 // import Viewtrip from './view-trip/[tripId]';
 import MyTrips from './my-trips';
 import Viewtrip from './view-trip/[tridId]/index.jsx';
+import { Toaster } from './components/ui/toaster';
 
 // ✅ Layout Component to ensure Header is always inside Router context
 const Layout = () => (

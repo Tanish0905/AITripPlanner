@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import React, {useState } from 'react';
+import {useState } from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 import { useGoogleLogin } from '@react-oauth/google';
@@ -19,7 +19,7 @@ import axios from 'axios';
 
 import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { db } from '@/service/firebaseConfig';
+import { db } from '../service/firebaseConfig.jsx' //'@/service/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
 function CreateTrip() {
