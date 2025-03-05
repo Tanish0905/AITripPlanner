@@ -1,3 +1,4 @@
+import * as React from "react"
 import { AI_PROMPT, SelectBudgetOptions, SelectTravelsList } from '@/components/constants/options';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

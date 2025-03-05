@@ -1,5 +1,5 @@
 // src/service/AllModal.jsx
-
+import * as React from "react"
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Initialize API key and model
