@@ -10,7 +10,7 @@ function PlaceCardItem ( { place } ) {
     const PHOTO_REF_URL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference={PHOTO_REFERENCE}&key=${import.meta.env.VITE_GOOGLE_PLACE_API_KEY}`;
   
     const GetPlacePhoto = async () => {
-        const data = { textQuery: place?.placeName };
+        const data = { textQuery: place?.PlaceName };
         try {
           const resp = await GetPlaceDetails(data);
           const places = resp?.data?.places;
