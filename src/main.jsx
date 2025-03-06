@@ -30,6 +30,9 @@ const router = createBrowserRouter([
       { path: 'create-trip', element: <CreateTrip /> },
       { path: 'view-trip/:tripId', element: <Viewtrip /> },
       { path: 'my-trips', element: <MyTrips /> },
+      { path: '/create-trip', element: <CreateTrip /> },
+      { path: '/view-trip/:tripId', element: <Viewtrip /> },
+      { path: '/my-trips', element: <MyTrips /> },
     ],
   }
 ], {
