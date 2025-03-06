@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const HotelCardItem = ({ hotel }) => {
   const [photoUrl, setPhotoUrl] = useState(null); // Store the image URL
+  console.log('hotel',hotel);
   
   const PHOTO_REF_URL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photo_reference={PHOTO_REFERENCE}&key=${import.meta.env.VITE_GOOGLE_PLACE_API_KEY}`;
   
