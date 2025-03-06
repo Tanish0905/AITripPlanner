@@ -24,7 +24,7 @@ const MyTrips = () => {
 
     try {
         const q = query(collection(db, 'AITrips'), where('userEmail', '==', user.email));
-        const querySnapshot = await getDocs(q);
+        const querySnapshot = await getDocs( q );
         
         const tripsSet = new Set(); // Use a Set to prevent duplicates
         const uniqueTrips = [];
@@ -37,7 +37,9 @@ const MyTrips = () => {
             }
         });
 
-        setUserTrips(uniqueTrips);
+        setUserTrips( uniqueTrips );
+        console.log('uniqueTrips',uniqueTrips);
+        
     } catch (error) {
         console.error('Error fetching trips:', error);
     }

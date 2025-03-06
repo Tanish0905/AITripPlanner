@@ -134,7 +134,8 @@ const OnGenerateTrip = async () => {
     const result = await chatSession.sendMessage(FINAL_PROMPT);
     const tripResponse = result?.response?.text();
     
-    if (!tripResponse) {
+    if ( !tripResponse ) {
+      console.log('tripResponse',tripResponse);
       toast({
         description: "Failed to generate trip. Please try again.",
       });

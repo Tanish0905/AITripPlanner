@@ -2,7 +2,7 @@ import React from 'react'
 import { HotelCardItem } from './HotelCardItem'
 
 function Hotels ( { trip } ) {
-  console.log('trip',trip);
+  console.log('trip',trip?.HotelOptions);
   
   return (
     <div>
