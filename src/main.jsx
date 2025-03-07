@@ -1,16 +1,16 @@
+"use client";
 import { StrictMode, startTransition } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import * as React from "react"
 import App from './App.jsx';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import CreateTrip from './create-trip.jsx';
 import Header from './components/custom/Header.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-// import Viewtrip from './view-trip/[tripId]';
-import MyTrips from './my-trips.jsx';
 import Viewtrip from './view-trip/[tridId]/index.jsx';
 import { Toaster } from './components/ui/toaster.jsx';
+import CreateTrip from './create-trip';
+import MyTrips from './my-trips';
 
 // ✅ Layout Component to ensure Header is always inside Router context
 const Layout = () => (
