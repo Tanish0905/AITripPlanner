@@ -10,10 +10,7 @@ function Hotels ( { trip } ) {
         <div className='grid grid-cols-2 md:grid-cols-3 mt-10 xl:grid-cols-4 gap-5'>
         { trip?.HotelOptions?.length !== 0 ?
           trip?.HotelOptions?.map( ( hotel, index ) => (
-            <>
-              <h1>{ index } { hotel?.HotelName }</h1>
               <HotelCardItem hotel={ hotel } key={ index } />
-            </>
           //   <img src="/MainLogo.svg" className='rounded-xl/>
           ) ) :
           <h2>Sorry, we couldn't find any hotels near this location.</h2>

@@ -2,7 +2,7 @@ import React from 'react'
 import PlaceCardItem from './PlaceCardItem';
 
 function PlacesToVisit ( { trip } ) {
-    console.log('PlacesToVisit',trip?.travelPlan?.itinerary[0]?.day);
+    console.log('PlacesToVisit',trip?.Itinerary);
     
     return (
         <div>
@@ -12,9 +12,9 @@ function PlacesToVisit ( { trip } ) {
                     <div>
                         <h2 className='font-medium text-lg' key={ index }>{ item?.Day }</h2>
                         <div className="grid md:grid-cols-2 gap-5">
-                            { item?.Plan?.map( ( place,index ) => ( 
+                            { item?.Places?.map( ( place,index ) => ( 
                                 <div key={index}>
-                                    <h2 className='font-medium text-sm text-orange-600'>{place?.Day}</h2>
+                                    {/* <h2 className='font-medium text-sm text-orange-600'>{place?.Day}</h2> */}
                                     <PlaceCardItem place={ place } />
                                 </div>
                             ) ) }
