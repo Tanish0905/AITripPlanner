@@ -7,10 +7,11 @@ import App from './App.jsx';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Header from './components/custom/Header.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import Viewtrip from './view-trip/[tridId]/index.jsx';
 import { Toaster } from './components/ui/toaster.jsx';
-import CreateTrip from './create-trip';
-import MyTrips from './my-trips';
+
+import Viewtrip from './viewTrips/[tridId]';
+import CreateTrip from './createTrip';
+import MyTrips from './myTrips';
 
 // ✅ Layout Component to ensure Header is always inside Router context
 const Layout = () => (
