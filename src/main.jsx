@@ -4,13 +4,13 @@ import './index.css';
 import * as React from "react"
 import App from './App.jsx';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import CreateTrip from './create-trip';
-import Header from './components/custom/Header';
+import CreateTrip from './create-trip.jsx';
+import Header from './components/custom/Header.jsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 // import Viewtrip from './view-trip/[tripId]';
-import MyTrips from './my-trips';
+import MyTrips from './my-trips.jsx';
 import Viewtrip from './view-trip/[tridId]/index.jsx';
-import { Toaster } from './components/ui/toaster';
+import { Toaster } from './components/ui/toaster.jsx';
 
 // ✅ Layout Component to ensure Header is always inside Router context
 const Layout = () => (
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       { path: 'create-trip', element: <CreateTrip /> },
       { path: 'view-trip/:tripId', element: <Viewtrip /> },
       { path: 'my-trips', element: <MyTrips /> },
-      { path: 'https://ai-trip-planner-woad-six.vercel.app//create-trip', element: <CreateTrip /> },
+      { path: '/create-trip', element: <CreateTrip /> },
       { path: '/view-trip/:tripId', element: <Viewtrip /> },
       { path: '/my-trips', element: <MyTrips /> },
     ],
