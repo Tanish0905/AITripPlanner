@@ -50,7 +50,7 @@ function PlaceCardItem ( { place } ) {
               {/* src={ place?.PlaceImageUrl }  */}
                   <div>
                   <h2 className='font-bold ext-lg'>{ place?.placeName }</h2>
-                  <p className='text-sm text-gray-400'>{ place?.placeDetails }</p>
+                  <p className='text-sm text-gray-400'>{ place?.PlaceDetails }</p>
                   {/* <h2 className='mt-2'>{place?.timeToTravel}</h2> */ }
                   <Button size><FaMapLocation /></Button>
               </div>

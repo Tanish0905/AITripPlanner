@@ -10,7 +10,7 @@ function PlacesToVisit ( { trip } ) {
             <div>
                 {trip?.Itinerary?.map( ( item, index ) => (
                     <div>
-                        <h2 className='font-medium text-lg' key={ index }>{ item?.Day }</h2>
+                        <h2 className='font-medium text-lg' key={ index }>Day { item?.Day } </h2>
                         <div className="grid md:grid-cols-2 gap-5">
                             { item?.Places?.map( ( place,index ) => ( 
                                 <div key={index}>

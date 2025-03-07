@@ -59,14 +59,14 @@ function Header() {
   };
 
   return (
-    <div className='p-3 shadow-sm flex justify-between items-center px-5'>
+    <div className='p-3 shadow-sm flex justify-between items-center px-1 sm:px-5'>
       <img src="/MainLogo.svg" width="80px" height="100px" />
       <div>
         {users ? (
           <div className='flex items-center gap-3'>
             <a href='/create-trip'>
               <Button variant='outline' className="rounded-full group-hover:opacity-100 transition-opacity duration-300 text-black bg-gray-200">
-                +Create Trip
+                Create Trip
               </Button>
             </a>
             <a href='/my-trips'>
