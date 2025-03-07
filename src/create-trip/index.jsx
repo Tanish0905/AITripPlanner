@@ -74,7 +74,7 @@ function CreateTrip() {
 
   const login = useGoogleLogin({
     clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-    redirectUri: "http://localhost:5173", // Ensure this matches the Google Cloud Console
+    redirectUri:"https://ai-trip-planner-woad-six.vercel.app", //"http://localhost:5173", // Ensure this matches the Google Cloud Console
     onSuccess: (codeResp) => GetUserProfile(codeResp),
     onError: (error) => {
       try {
