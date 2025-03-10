@@ -22,11 +22,20 @@ import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../service/firebaseConfig.jsx' //'@/service/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from '../redux/authSlice.js';
 
-function CreateTrip() {
+function CreateTrip () {
+  const dispatch = useDispatch();
   const auth = getAuth();
-  const user = auth.currentUser;
-
+  const user = useSelector(state => state.auth.user);
+  
+  React.useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      dispatch(loginSuccess(storedUser));
+    }
+  }, [dispatch]);
   const { toast } = useToast();
   const [place, setPlace] = useState();
   const [formData, setFormData] = useState([]);
@@ -73,17 +82,43 @@ function CreateTrip() {
   };
 
   const login = useGoogleLogin({
-    clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-    redirectUri:"https://ai-trip-planner-woad-six.vercel.app", //"http://localhost:5173", // Ensure this matches the Google Cloud Console
-    onSuccess: (codeResp) => GetUserProfile(codeResp),
-    onError: (error) => {
+    onSuccess: async (tokenInfo) => {
       try {
-        console.log("Login Error:", error);
-      } catch (err) {
-        alert("Error logging error.");
+        const response = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
+          headers: {
+            Authorization: `Bearer ${tokenInfo?.access_token}`,
+            Accept: 'application/json',
+          },
+        });
+
+        const userData = {
+          name: response.data.name,
+          picture: response.data.picture,
+          email: response.data.email,
+          accessToken: tokenInfo?.access_token,
+        };
+
+        dispatch(loginSuccess(userData));
+        setOpenDialog(false);
+      } catch (error) {
+        console.error("Error fetching Google Profile:", error);
       }
     },
+    onError: (error) => {
+      console.log("Login Error:", error);
+    },
   });
+  // const login = useGoogleLogin({
+  //   redirectUri:"https://ai-trip-planner-woad-six.vercel.app", //"http://localhost:5173", // Ensure this matches the Google Cloud Console
+  //   onSuccess: (codeResp) => GetUserProfile(codeResp),
+  //   onError: (error) => {
+  //     try {
+  //       console.log("Login Error:", error);
+  //     } catch (err) {
+  //       alert("Error logging error.");
+  //     }
+  //   },
+  // });
 
 const OnGenerateTrip = async () => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -206,65 +241,6 @@ const SaveAiTrip = async (TripData) => {
   }
 };
 
-  // const SaveAiTrip = async (TripData) => {
-  // setLoading(true);
-
-  // const user = JSON.parse(localStorage.getItem('user'));
-  // const accessToken = localStorage.getItem('access_token');
-  // const refreshToken = localStorage.getItem('refresh_token');
-
-  // if (!user || !accessToken) {
-  //   setLoading(false);
-  //   alert("User not found, please log in.");
-  //   return;
-  // }
-
-  // // Validate the access token
-  // const isTokenValid = await validateToken(accessToken);
-  // if (!isTokenValid) {
-  //   // If the token is invalid or expired, try refreshing it
-  //   if (refreshToken) {
-  //     const newAccessToken = await refreshAccessToken(refreshToken);
-  //     if (newAccessToken) {
-  //       localStorage.setItem('access_token', newAccessToken);
-  //     } else {
-  //       setLoading(false);
-  //       alert("Session expired. Please log in again.");
-  //       setOpenDialog( true ); // Prompt the user to log in again
-  //       return;
-  //     }
-  //   } else {
-  //     setLoading(false);
-  //     alert("Session expired. Please log in again.");
-  //     setOpenDialog(true); // Prompt the user to log in again
-  //     return;
-  //   }
-  // }
-
-  // const docId = Date.now().toString();
-
-  // try {
-  //   // Parse TripData if it's a string
-  //   const tripDataObject = typeof TripData === 'string' ? JSON.parse(TripData) : TripData;
-
-  //   // Ensure the collection name matches the Firestore rules
-  //   await setDoc(doc(db,'AITrips',docId), {
-  //     ...tripDataObject,
-  //     userSelection: formData,
-  //     userEmail: user?.email,
-  //     id:docId,
-  //     createdBy: user.id,
-  //     timestamp: new Date()
-  //   });
-  //   alert("Trip saved successfully!");
-  // } catch (error) {
-  //   console.error("Error saving trip:", error);
-  //   alert("Error saving the trip, please try again.");
-  // } finally {
-  //   setLoading( false );
-  //   navigate('/view-trip/'+docId)
-  // }
-  // };
   const GetUserProfile = async (tokenInfo) => {
     axios
       .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {

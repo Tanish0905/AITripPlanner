@@ -12,6 +12,8 @@ import { Toaster } from './components/ui/toaster.jsx';
 import Viewtrip from './viewTrips/[tridId]';
 import CreateTrip from './createTrip';
 import MyTrips from './myTrips';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
 
 // ✅ Layout Component to ensure Header is always inside Router context
 const Layout = () => (
@@ -47,10 +49,12 @@ const root = createRoot(document.getElementById('root'));
 startTransition(() => {
   root.render(
     <StrictMode>
+      <Provider store={store}>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID}>
         <Toaster />
         <RouterProvider router={router} />
-      </GoogleOAuthProvider>
+        </GoogleOAuthProvider>
+      </Provider>
     </StrictMode>
   );
 });
